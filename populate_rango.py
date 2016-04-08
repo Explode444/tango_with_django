@@ -11,7 +11,7 @@ def populate():
     '''
 	Function to add categorys and pages to db
 	'''
-	python_cat = add_cat('Python', 10, likes=20)
+    python_cat = add_cat('Python', 10, likes=20)
 
     add_page(cat=python_cat,
         title="Official Python Tutorial",

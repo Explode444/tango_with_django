@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#u36^06ad+s8@y5f%mud33!8utz^_%30!bbe+58fi%(sj)oamp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+LOGIN_URL = '/rango/login/'
 
 DEBUG = True
 if not settings.DEBUG:
