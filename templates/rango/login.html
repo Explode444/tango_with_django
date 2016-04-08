@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Rango</title>
-	</head>
-	<body>
-		<h1>Login to Rango</h1>
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Login to Rango{% endblock %}
 		
+{% block body_block %}		
 		<form id="login_form" method="POST" action="/rango/login/">
 			{% csrf_token %}
 			Username: <input type="text" name="username" value="" size="50" />
@@ -17,7 +16,4 @@
 
 		
 		</form>
-				
-
-	</body>
-</html>
+{% endblock %}
