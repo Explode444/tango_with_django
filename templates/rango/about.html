@@ -4,10 +4,16 @@
 
 {% block title %}About{% endblock %}
 		
-{% block body_block %}	
-		<h1>This is the ABOUT Page Template</h1>
+		{% block body_block %}	
+<div class="page-header">
+                <h1>About</h1>
+            </div>
+			<div>
 		hello world! <strong>{{ boldmessage}}</strong><br />
 		<!-- <a href="/rango/">Return to Home</a><br /> -->
 		<a href="{{ home }}">Return to Home</a><br />
 		<img src="{% static 'images/IMG_9434.jpg' %}" alt="Family Photo">
+		<br />
+		You have visited this site {{visits}} times
+</div>
 {% endblock %}

@@ -5,7 +5,10 @@
 {% block title %}Add a Category{% endblock %}
 
 {% block body_block %}
-		
+	<div class="page-header">
+                <h1>Add A Category</h1>
+            </div>
+			<div>	
 		<form id="category_form" method="post" action="/rango/add_category">
 		
 			{% csrf_token %}
@@ -18,11 +21,10 @@
 				{{ field.help_text }}
 				{{ field }}
 			{% endfor %}
-			
-			<input type='submit' name="submit" value="Create Category" />
+			<button class="btn btn-primary" type="submit" name="submit">Create Category</button>
 		
 		
 		
 		</form>
-
+</div>
 {% endblock %}		

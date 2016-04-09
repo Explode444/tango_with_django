@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'rango',
+	'registration',
+	'bootstrap_toolkit', 
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,6 +123,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Persistent session Cookies will expire in xx seconds
+SESSION_COOKIE_AGE = 1209600
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -134,3 +138,10 @@ STATICFILES_DIRS = (
 #Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#Registration settings
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_URL = '/accounts/login/'
