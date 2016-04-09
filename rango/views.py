@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators	import login_required
 from datetime import datetime
 from rango.bing_search import run_query
+
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -180,3 +181,17 @@ def search(request):
 			result_list = run_query(query)
 			
 	return render(request, 'rango/search.html', {'result_list': result_list})
+	
+def track_url(request):
+	redirect_url = '/rango/'
+	if request.method == "GET":
+		if 'page_id' in request.GET:
+			page_id = request.GET['page_id']
+			try:
+				page = Page.objects.get(id=page_id)
+				page.views += 1
+				page.save()
+				redirect_url = page.url
+			except:
+				pass
+	return redirect(redirect_url)		
