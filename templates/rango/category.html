@@ -9,25 +9,26 @@
                 <h1>{{ category_name }}</h1>
             </div>
 			<div>
+
 		<h1>{{ category_name }}</h1>
 		{% if category %}
 		
-			{% if pages %}
-			<ul>
-				{% for page in pages %}
-				<li><a href="{% url 'goto' %}?page_id={{page.id}}">{{ page.title }}</a>
-				{% if page.views > 1 %}
-				({{ page.views}} views)
-				{% elif page.views == 1 %}
-				(1 view)
-				{% endif %}
-				</li>
-				{% endfor %}
-			</ul>
-			{% else %}
-				<strong>No pages currently in category.</strong>
-			{% endif %}
-			
+		{% if pages %}
+    <ul>
+    {% for page in pages %}
+        <li>
+            <a href="/rango/goto/?page_id={{page.id}}">{{page.title}}</a>
+            {% if page.views > 1 %}
+                - ({{ page.views }} views - Last Visited: {{ page.last_visit }}))
+            {% elif page.views == 1 %}
+                - ({{ page.views }} view - Last Visited: {{ page.last_visit }})
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <strong>No pages currently in category.</strong><br/>
+{% endif %}
 		
 			{% if user.is_authenticated %}
 			<a href="{% url 'category' category_name_slug %}add_page/">Add a new page</a>
@@ -37,6 +38,13 @@
 		{% endif %}
 		
 		{% if user.is_authenticated %}
+			
+			<div>
+			<br />
+				<button class="btn btn-primary" data-catid="{{category.id}}" id="likes"><span class="glyphicon glyphicon-thumbs-up"></span>  Like</button>
+				<div style="display:inline-block">This category has <strong id="like_count" >{{category.likes }}</strong> likes.</div>
+				</div>
+				<br />
 		<form class="form-inline" id="user_form" method="post" action="{% url 'category' category.slug %}">
                 {% csrf_token %}
                 <!-- Display the search form elements here -->
@@ -54,15 +62,22 @@
                         <div class="list-group">
                             {% for result in result_list %}
                                 <div class="list-group-item">
-                                    <h4 class="list-group-item-heading"><a href="{{ result.link }}">{{ result.title }}</a></h4>
+									<div >
+									<button  style='display:inline-block' data-catid="{{category.id}}" data-title="{{ result.title }}" data-url="{{ result.link }}" 
+									class="rango-add btn btn-mini btn-info" type="button">Add Page</button>
+                                    <h4 style='display:inline-block' class="list-group-item-heading"><a href="{{ result.link }}">{{ result.title }}</a></h4>
+									</div>
                                     <p class="list-group-item-text">{{ result.summary }}</p>
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
                 {% endif %}
+
                 </div>
+				
             </div>
+			
 			{% endif %}
 {% endblock %}
 </div>

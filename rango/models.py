@@ -7,23 +7,27 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
-	name = models.CharField(max_length=128, unique=True)
-	views = models.IntegerField(default=0)
-	likes = models.IntegerField(default=0)
-	slug = models.SlugField()
+    name = models.CharField(max_length=128, unique=True)
+    views = models.PositiveIntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    slug = models.SlugField()
 	
-	def save(self, *args, **kwargs):
-		self.slug = slugify(self.name)
-		super(Category, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.views < 0:
+            self.views = 0
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 	
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.name
 
 class Page(models.Model):
 	category = models.ForeignKey(Category)
 	title = models.CharField(max_length=128)
 	url = models.URLField()
 	views = models.IntegerField(default=0)
+	last_visit = models.DateTimeField()
+	first_visit = models.DateTimeField()
 	
 	def __str__(self):
 		return self.title

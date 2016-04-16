@@ -3,6 +3,7 @@
 {% load staticfiles %}
 <script src="{% static "js/jquery-1.12.3.js" %}"></script>
 <script src="{% static "js/rango-jquery.js" %}"></script>
+<script src="{% static "js/rango-ajax.js" %}"></script>
 
 <html lang="en">
 
@@ -59,6 +60,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+				
+				<ul class="nav nav-list">
+        <li class="nav-header">Find a Category</li>
+        <form>
+        <label></label>
+        <li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+        </form>
+</ul>
+<br />
+<div id="cats">
+
+<br />
+<hr />
+</div>
 		
                 {% block side_block %}
 				{% get_category_list category %}

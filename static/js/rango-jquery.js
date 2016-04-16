@@ -20,4 +20,7 @@ $(document).ready(function() {
 		$("#msg").html(msgstr)
 	});
 	
+	
 });
+
+
