@@ -14,8 +14,8 @@ from django.conf.urls.static import static
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = '/home/JordanFrank/tango_with_django/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -25,13 +25,13 @@ SECRET_KEY = '#u36^06ad+s8@y5f%mud33!8utz^_%30!bbe+58fi%(sj)oamp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 LOGIN_URL = '/rango/login/'
-
-DEBUG = True
+urlpatterns = ""
+DEBUG = False
 if not settings.DEBUG:
-        urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-		
-		
-ALLOWED_HOSTS = []
+    urlpatterns = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+ALLOWED_HOSTS = ['JordanFrank.pythonanywhere.com']
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 # Application definition
@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'rango',
 	'registration',
-	'bootstrap_toolkit', 
+	'bootstrap_toolkit',
 ]
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
